@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARATHON — Pratyush Tiwari | CS & ML Mastery Tracker</title>
+  <meta name="description" content="Personalized CS Mastery Tracker for Pratyush Tiwari: Phase 1 Striver's A2Z DSA Sheet and Phase 2 Python, Machine Learning & Advanced Practice.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  
+  <!-- Modern Typography (Plus Jakarta Sans & JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <!-- Brand & User Identity -->
+      <div class="brand-section" id="brandHomeBtn">
+        <div class="brand-logo-wrap">
+          <img src="assets/logo.jpg" alt="Marathon Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-titles">
+          <div class="brand-title-row">
+            <span class="brand-name">MARATHON</span>
+            <span class="user-badge">PRATYUSH TIWARI</span>
+          </div>
+          <span class="brand-subtitle">
+            <span>CS Phase 1 & 2 Odyssey</span>
+            <span style="color: var(--border-medium);">•</span>
+            <span id="headerSyncStatus" style="color: var(--accent-emerald);">● Local Sync Active</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Phase Navigation -->
+      <nav class="phase-nav">
+        <button class="phase-tab-btn active" data-tab="phase1" id="tabPhase1">
+          <span>Phase 1: DSA (Striver A2Z)</span>
+          <span class="tab-pill" id="badgePhase1Count">19 Steps</span>
+        </button>
+        <button class="phase-tab-btn" data-tab="phase2" id="tabPhase2">
+          <span>Phase 2: Python & ML</span>
+          <span class="tab-pill" id="badgePhase2Count">3 Tracks</span>
+        </button>
+        <button class="phase-tab-btn" data-tab="revision" id="tabRevision">
+          <span>Revision Deck</span>
+          <span class="tab-pill" id="badgeRevisionCount">0</span>
+        </button>
+        <button class="phase-tab-btn" data-tab="analytics" id="tabAnalytics">
+          <span>Analytics & Heatmap</span>
+        </button>
+      </nav>
+
+      <!-- Header Utilities -->
+      <div class="header-actions">
+        <!-- Pomodoro Trigger -->
+        <div class="pomo-header-pill" id="pomoOpenBtn" title="Open Focus Pomodoro Timer">
+          <div class="pomo-icon-dot"></div>
+          <span class="pomo-timer-display" id="pomoHeaderDisplay">25:00</span>
+        </div>
+
+        <!-- Sound Toggle -->
+        <button class="btn-icon" id="soundToggleBtn" title="Toggle Sound Feedback">
+          <span id="soundIcon">🔔</span>
+        </button>
+
+        <!-- Backup & Settings -->
+        <button class="btn-icon" id="backupModalBtn" title="Backup / Restore / Export JSON">
+          <span>⚙️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="dashboard-main container">
+
+    <!-- Hero Overview & Progress Summary Card -->
+    <section class="hero-overview-card" id="heroOverview">
+      <div class="hero-grid">
+        <!-- Radial Circular Dial -->
+        <div class="progress-ring-container">
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring-svg" viewBox="0 0 120 120">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="50%" stop-color="#6366f1" />
+                  <stop offset="100%" stop-color="#a855f7" />
+                </linearGradient>
+              </defs>
+              <circle class="progress-ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-ring-circle" id="heroRingCircle" cx="60" cy="60" r="50" stroke-dasharray="314.159" stroke-dashoffset="314.159"></circle>
+            </svg>
+            <div class="progress-ring-content">
+              <span class="progress-percent-val" id="heroPercentVal">0%</span>
+              <span class="progress-ring-label">Completed</span>
+            </div>
+          </div>
+          <div class="hero-identity">
+            <span class="hero-welcome-tag">WELCOME BACK, PRATYUSH</span>
+            <h1 class="hero-main-title" id="heroCurrentTabTitle">Phase 1: Striver's A2Z DSA</h1>
+            <p class="hero-description" id="heroCurrentTabDesc">
+              Master the foundational algorithms, patterns, dynamic programming, and trees to ace engineering interviews.
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Stats Metrics -->
+        <div class="stats-badges-grid">
+          <div class="stat-metric-card highlight-card">
+            <span class="stat-metric-label">
+              <span>🎯</span>
+              <span>Total Solved</span>
+            </span>
+            <span class="stat-metric-val" id="statSolvedCount">0</span>
+            <span class="stat-metric-sub" id="statTotalTarget">of 335 items</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="stat-metric-label">
+              <span>⏳</span>
+              <span>Left to Conquer</span>
+            </span>
+            <span class="stat-metric-val" id="statRemainingCount">335</span>
+            <span class="stat-metric-sub">Remaining items</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="stat-metric-label">
+              <span>🔥</span>
+              <span>Daily Streak</span>
+            </span>
+            <span class="stat-metric-val" id="statStreakDays">1 Day</span>
+            <span class="stat-metric-sub" id="statLastActiveDate">Keep it going!</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="stat-metric-label">
+              <span>⚡</span>
+              <span>Today's Solved</span>
+            </span>
+            <span class="stat-metric-val" id="statTodaySolved">0</span>
+            <span class="stat-metric-sub">Logged today</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Difficulty Breakdown Bars -->
+      <div class="difficulty-breakdown-row">
+        <!-- Easy -->
+        <div class="diff-bar-item">
+          <div class="diff-bar-header">
+            <span class="diff-tag-easy">● Easy Questions</span>
+            <span id="diffCountEasy">0 / 0 (0%)</span>
+          </div>
+          <div class="diff-track">
+            <div class="diff-fill fill-easy" id="diffBarEasy" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Medium -->
+        <div class="diff-bar-item">
+          <div class="diff-bar-header">
+            <span class="diff-tag-med">● Medium Questions</span>
+            <span id="diffCountMedium">0 / 0 (0%)</span>
+          </div>
+          <div class="diff-track">
+            <div class="diff-fill fill-med" id="diffBarMedium" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Hard -->
+        <div class="diff-bar-item">
+          <div class="diff-bar-header">
+            <span class="diff-tag-hard">● Hard Questions</span>
+            <span id="diffCountHard">0 / 0 (0%)</span>
+          </div>
+          <div class="diff-track">
+            <div class="diff-fill fill-hard" id="diffBarHard" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Streak Pill -->
+        <div class="streak-pill-box">
+          <span class="streak-flame">🔥</span>
+          <div>
+            <div class="streak-count-text" id="streakSubText">Phase 1 Marathon</div>
+            <div class="streak-desc">Consistency is superpower</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Control & Filter Toolbar -->
+    <section class="control-toolbar">
+      <!-- Search Input -->
+      <div class="search-box-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search problems, patterns, topics... (Ctrl+K)">
+        <button id="searchClearBtn" class="search-clear-btn" title="Clear Search">✕</button>
+      </div>
+
+      <!-- Status Filters -->
+      <div class="filters-group">
+        <button class="filter-chip-btn active" data-filter="all">All</button>
+        <button class="filter-chip-btn filter-todo" data-filter="todo">⚪ Left (To Do)</button>
+        <button class="filter-chip-btn" data-filter="inprogress">🟡 In Progress</button>
+        <button class="filter-chip-btn filter-solved" data-filter="solved">🟢 Solved</button>
+        <button class="filter-chip-btn filter-revision" data-filter="revision">🟣 Revision</button>
+        <button class="filter-chip-btn" data-filter="starred">⭐ Starred</button>
+      </div>
+
+      <!-- Difficulty Filters -->
+      <div class="filters-group">
+        <button class="filter-chip-btn active" data-diff="all">All Levels</button>
+        <button class="filter-chip-btn" data-diff="Easy">Easy</button>
+        <button class="filter-chip-btn" data-diff="Medium">Medium</button>
+        <button class="filter-chip-btn" data-diff="Hard">Hard</button>
+      </div>
+
+      <!-- Quick Jump & Global Actions -->
+      <div class="toolbar-actions">
+        <select id="quickJumpSelect" class="quick-jump-select">
+          <option value="">Jump to Section...</option>
+        </select>
+        <button class="btn-secondary" id="toggleAllStepsBtn">
+          <span id="toggleAllIcon">📂</span>
+          <span id="toggleAllLabel">Expand All</span>
+        </button>
+        <button class="btn-primary" id="addCustomProblemBtn">
+          <span>＋</span>
+          <span>Add Custom</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Views Switcher Container -->
+    <div id="viewsWrapper">
+      <!-- Phase 1: Striver A2Z DSA Container -->
+      <section id="phase1View" class="view-panel">
+        <div class="steps-list" id="phase1StepsList">
+          <!-- Dynamically populated from dsa-data.js -->
+        </div>
+      </section>
+
+      <!-- Phase 2: Python, ML & Continuous DSA Container -->
+      <section id="phase2View" class="view-panel" style="display: none;">
+        <div id="phase2TracksList">
+          <!-- Dynamically populated from phase2-data.js -->
+        </div>
+      </section>
+
+      <!-- Revision Deck View -->
+      <section id="revisionView" class="view-panel" style="display: none;">
+        <div class="revision-deck-container">
+          <div class="deck-summary-card">
+            <div>
+              <h2 style="font-size: 1.2rem; font-weight: 800; color: var(--text-high);">Spaced Repetition Deck</h2>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Problems flagged with 🟣 <strong>Needs Revision</strong> or ⭐ <strong>Starred</strong> for periodic recall.
+              </p>
+            </div>
+            <button class="btn-secondary" id="refreshRevisionDeckBtn">🔄 Refresh Deck</button>
+          </div>
+          <div class="deck-cards-grid" id="revisionDeckGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics & Heatmap View -->
+      <section id="analyticsView" class="view-panel" style="display: none;">
+        <div class="analytics-view-container">
+          <!-- Heatmap Card -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <div class="analytics-card-title">
+                <span>📅</span>
+                <span>Annual Study Activity Heatmap (Last 365 Days)</span>
+              </div>
+              <span style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);">
+                GitHub-style Commit Velocity
+              </span>
+            </div>
+            <div class="heatmap-scroll-wrap">
+              <div class="heatmap-grid" id="studyHeatmapGrid">
+                <!-- Dynamically rendered cells -->
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 14px; font-size: 0.72rem; color: var(--text-muted);">
+              <span>Less</span>
+              <div style="width: 12px; height: 12px; background: var(--bg-surface-3); border-radius: 2px;"></div>
+              <div style="width: 12px; height: 12px; background: #064e3b; border-radius: 2px;"></div>
+              <div style="width: 12px; height: 12px; background: #047857; border-radius: 2px;"></div>
+              <div style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></div>
+              <div style="width: 12px; height: 12px; background: #34d399; border-radius: 2px;"></div>
+              <span>More</span>
+            </div>
+          </div>
+
+          <!-- Category Progress Breakdown -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <div class="analytics-card-title">
+                <span>📊</span>
+                <span>Category & Step Mastery Rates</span>
+              </div>
+              <button class="btn-secondary" id="exportReportBtn">📄 Export Printable Summary</button>
+            </div>
+            <div class="category-bars-grid" id="categoryBarsGrid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Notes & Intuition Drawer / Modal -->
+  <div class="modal-overlay" id="notesModalOverlay">
+    <div class="modal-panel" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <span style="font-size: 0.72rem; color: var(--accent-cyan); font-family: var(--font-mono);" id="modalNoteTopicTag">DSA TOPIC</span>
+          <h3 class="modal-title" id="modalNoteProblemTitle">Problem Notes & Intuition</h3>
+        </div>
+        <button class="modal-close-btn" id="closeNotesModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Status & Difficulty in Modal -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Current Status</label>
+            <select class="form-select" id="modalStatusSelect">
+              <option value="todo">⚪ Left (To Do)</option>
+              <option value="inprogress">🟡 In Progress</option>
+              <option value="solved">🟢 Solved / Completed</option>
+              <option value="revision">🟣 Needs Revision</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Starred Priority</label>
+            <button class="btn-secondary" id="modalStarToggleBtn" style="height: 42px; justify-content: center;">
+              <span id="modalStarIcon">☆</span>
+              <span id="modalStarLabel">Star as High Priority</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Time & Space Complexities -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Time Complexity</label>
+            <input type="text" class="form-input" id="modalTimeComplexity" placeholder="e.g. O(N log N) or O(V + E)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Space Complexity</label>
+            <input type="text" class="form-input" id="modalSpaceComplexity" placeholder="e.g. O(1) or O(N)">
+          </div>
+        </div>
+
+        <!-- Intuition & Approach -->
+        <div class="form-group">
+          <label class="form-label">Intuition, Key Edge Cases & Patterns</label>
+          <textarea class="form-textarea" id="modalNotesText" placeholder="Write your key takeaways, base cases, two pointer/sliding window condition, DP transition equation..."></textarea>
+        </div>
+
+        <!-- Solution Snippet / Repository Link -->
+        <div class="form-group">
+          <label class="form-label">Solution URL / GitHub Code Reference</label>
+          <input type="url" class="form-input" id="modalCodeUrl" placeholder="https://github.com/... or LeetCode submission link">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelNotesModalBtn">Cancel</button>
+        <button class="btn-primary" id="saveNotesModalBtn">💾 Save Notes & Status</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pomodoro Floating Modal -->
+  <div class="modal-overlay" id="pomoModalOverlay">
+    <div class="modal-panel" style="max-width: 440px; text-align: center;">
+      <div class="modal-header">
+        <h3 class="modal-title">⏱️ Deep Focus Grinding Timer</h3>
+        <button class="modal-close-btn" id="closePomoModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" style="align-items: center; padding: 32px 24px;">
+        <div style="font-size: 3.5rem; font-family: var(--font-mono); font-weight: 800; color: var(--text-high); letter-spacing: -0.02em; margin: 10px 0;" id="pomoLargeTimer">
+          25:00
+        </div>
+        <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+          <button class="filter-chip-btn active" data-pomo-mode="work">25m Grind</button>
+          <button class="filter-chip-btn" data-pomo-mode="short">5m Break</button>
+          <button class="filter-chip-btn" data-pomo-mode="long">15m Break</button>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-primary" id="pomoStartPauseBtn" style="padding: 10px 24px; font-size: 0.95rem;">
+            ▶ Start Session
+          </button>
+          <button class="btn-secondary" id="pomoResetBtn" style="padding: 10px 18px;">
+            ↺ Reset
+          </button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 18px;">
+          Sessions Completed Today: <strong id="pomoSessionsCount" style="color: var(--accent-emerald);">0</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Custom Problem Modal -->
+  <div class="modal-overlay" id="customProblemOverlay">
+    <div class="modal-panel" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">＋ Add Custom Problem / Task</h3>
+        <button class="modal-close-btn" id="closeCustomModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Problem / Topic Title</label>
+          <input type="text" class="form-input" id="customTitleInput" placeholder="e.g. LeetCode 42 - Trapping Rain Water with Stack">
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Assign To Section</label>
+            <select class="form-select" id="customSectionSelect">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Difficulty</label>
+            <select class="form-select" id="customDiffSelect">
+              <option value="Easy">Easy</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Resource / Problem Link (Optional)</label>
+          <input type="url" class="form-input" id="customLinkInput" placeholder="https://leetcode.com/problems/...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelCustomModalBtn">Cancel</button>
+        <button class="btn-primary" id="saveCustomProblemBtn">Add to Tracker</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backup & JSON Sync Modal -->
+  <div class="modal-overlay" id="backupModalOverlay">
+    <div class="modal-panel" style="max-width: 560px;">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ Data Backup & Device Sync</h3>
+        <button class="modal-close-btn" id="closeBackupModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-medium);">
+          All your progress is securely stored in your browser's local storage. You can export a JSON backup to transfer between devices or restore a previous snapshot.
+        </p>
+
+        <div style="background: var(--bg-surface-2); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="font-size: 0.9rem; color: var(--text-high);">Export Tracker Snapshot</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Download a JSON file with all your notes and status</div>
+            </div>
+            <button class="btn-primary" id="exportJsonBtn">Export JSON</button>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border-subtle);">
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="font-size: 0.9rem; color: var(--text-high);">Import Tracker Snapshot</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Upload a previously exported JSON backup</div>
+            </div>
+            <label class="btn-secondary" style="cursor: pointer; margin: 0;">
+              Import JSON
+              <input type="file" id="importJsonInput" accept=".json" style="display: none;">
+            </label>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border-subtle);">
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="font-size: 0.9rem; color: var(--accent-rose);">Reset All Progress</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Clear all saved statuses and notes</div>
+            </div>
+            <button class="btn-secondary" id="resetDataBtn" style="color: var(--accent-rose); border-color: rgba(244, 63, 94, 0.3);">
+              Reset All
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" id="closeBackupFooterBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="dsa-data.js"></script>
+  <script src="phase2-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
