@@ -4,14 +4,20 @@
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Quick Start & Live Link
 
-You can use the tracker in either of two instant ways:
+- 🌐 **Live Web Application**: **[https://pratyushdev-7.github.io/MARATHON/](https://pratyushdev-7.github.io/MARATHON/)**
+- 📦 **GitHub Repository**: **[https://github.com/PratyushDev-7/MARATHON](https://github.com/PratyushDev-7/MARATHON)**
 
-### Method 1: Instant Browser Launch (Double Click)
+You can use the tracker in any of the following ways:
+
+### Method 1: Open Live on GitHub Pages
+Visit: **[https://pratyushdev-7.github.io/MARATHON/](https://pratyushdev-7.github.io/MARATHON/)**
+
+### Method 2: Instant Browser Launch (Double Click)
 Simply double-click [`index.html`](./index.html) in Windows File Explorer. It opens instantly in your default web browser (Chrome, Edge, Brave, etc.) with full offline support and instant `localStorage` saving.
 
-### Method 2: Local HTTP Server (Already Live on Port 3000)
+### Method 3: Local HTTP Server (Port 3000)
 ```powershell
 python -m http.server 3000
 ```
