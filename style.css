@@ -1,6 +1,6 @@
 /* ==========================================================================
    MARATHON - Pratyush Tiwari's CS Mastery Odyssey
-   Ultra-Premium Obsidian Dark Theme & Design System
+   Ultra-Premium Obsidian Dark Theme & Systematic Layout System
    ========================================================================== */
 
 :root {
@@ -10,13 +10,13 @@
   --bg-surface-2: #15151e;
   --bg-surface-3: #1c1c28;
   --bg-surface-hover: #222232;
-  --bg-glass: rgba(15, 15, 20, 0.78);
-  --bg-glass-elevated: rgba(22, 22, 30, 0.88);
+  --bg-glass: rgba(12, 12, 17, 0.88);
+  --bg-glass-elevated: rgba(20, 20, 28, 0.92);
 
   /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-active: rgba(99, 102, 241, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-active: rgba(99, 102, 241, 0.5);
   --border-glow: rgba(56, 189, 248, 0.35);
 
   /* Text & Typography */
@@ -70,7 +70,7 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
 
   /* Layout */
-  --header-height: 72px;
+  --header-min-height: 68px;
   --container-max: 1440px;
 }
 
@@ -94,7 +94,7 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.14), transparent),
     radial-gradient(ellipse 60% 40% at 90% 80%, rgba(56, 189, 248, 0.08), transparent),
     radial-gradient(ellipse 50% 30% at 10% 40%, rgba(168, 85, 247, 0.08), transparent);
   background-attachment: fixed;
@@ -125,7 +125,9 @@ body {
   padding: 0 24px;
 }
 
-/* App Header */
+/* ==========================================================================
+   App Header (Systematic Flex Alignment)
+   ========================================================================== */
 .app-header {
   position: sticky;
   top: 0;
@@ -134,7 +136,8 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
-  height: var(--header-height);
+  min-height: var(--header-min-height);
+  padding: 10px 0;
   display: flex;
   align-items: center;
 }
@@ -143,21 +146,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 18px;
   width: 100%;
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .brand-logo-wrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   background: var(--bg-surface-2);
   border: 1px solid var(--border-medium);
@@ -166,6 +170,7 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-glow-cyan);
+  flex-shrink: 0;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -182,6 +187,7 @@ body {
 .brand-titles {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .brand-title-row {
@@ -199,12 +205,13 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .user-badge {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 2px 8px;
   border-radius: var(--radius-full);
   background: rgba(99, 102, 241, 0.15);
@@ -212,15 +219,17 @@ body {
   color: var(--accent-cyan);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brand-subtitle {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 /* Phase Navigation Tabs */
@@ -232,6 +241,13 @@ body {
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
   gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 100%;
+}
+
+.phase-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .phase-tab-btn {
@@ -241,7 +257,7 @@ body {
   font-family: var(--font-main);
   font-size: 0.82rem;
   font-weight: 600;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-full);
   cursor: pointer;
   display: flex;
@@ -249,6 +265,7 @@ body {
   gap: 8px;
   transition: all 0.2s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .phase-tab-btn:hover {
@@ -284,6 +301,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn-icon {
@@ -299,6 +317,7 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
+  flex-shrink: 0;
 }
 
 .btn-icon:hover {
@@ -320,6 +339,7 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .pomo-header-pill:hover {
@@ -347,9 +367,11 @@ body {
   color: var(--text-high);
 }
 
-/* Main Dashboard Container */
+/* ==========================================================================
+   Main Dashboard Container
+   ========================================================================== */
 .dashboard-main {
-  padding: 32px 0 64px 0;
+  padding: 28px 0 64px 0;
 }
 
 /* Hero Section */
@@ -358,7 +380,7 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   padding: 28px 32px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -377,29 +399,22 @@ body {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 36px;
+  grid-template-columns: minmax(320px, 1.15fr) minmax(360px, 1.35fr);
+  gap: 32px;
   align-items: center;
-}
-
-@media (max-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
 }
 
 /* Radial Progress Ring */
 .progress-ring-container {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .progress-ring-wrap {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   flex-shrink: 0;
 }
 
@@ -412,13 +427,13 @@ body {
 .progress-ring-bg {
   fill: none;
   stroke: var(--bg-surface-3);
-  stroke-width: 10;
+  stroke-width: 9;
 }
 
 .progress-ring-circle {
   fill: none;
   stroke: url(#ringGrad);
-  stroke-width: 10;
+  stroke-width: 9;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -434,14 +449,14 @@ body {
 
 .progress-percent-val {
   font-family: var(--font-mono);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--text-high);
   letter-spacing: -0.02em;
 }
 
 .progress-ring-label {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -452,52 +467,49 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .hero-welcome-tag {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--accent-cyan);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .hero-main-title {
-  font-size: 1.85rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
   font-weight: 800;
   color: var(--text-high);
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .hero-description {
   color: var(--text-medium);
-  font-size: 0.9rem;
-  max-width: 580px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  max-width: 540px;
 }
 
 /* Stats Counter Badges Grid */
 .stats-badges-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 768px) {
-  .stats-badges-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .stat-metric-card {
   background: var(--bg-surface-2);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 16px 20px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
   transition: all 0.2s ease;
 }
 
@@ -513,59 +525,74 @@ body {
 }
 
 .stat-metric-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stat-metric-val {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 800;
   color: var(--text-high);
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .stat-metric-sub {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Difficulty Breakdown Bars */
 .difficulty-breakdown-row {
-  margin-top: 20px;
-  padding-top: 18px;
+  margin-top: 22px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-subtle);
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
   align-items: center;
   gap: 20px;
-}
-
-@media (max-width: 768px) {
-  .difficulty-breakdown-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
 }
 
 .diff-bar-item {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .diff-bar-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
+  align-items: center;
+  font-size: 0.74rem;
   font-weight: 600;
+  gap: 8px;
+}
+
+.diff-bar-header span:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.diff-bar-header span:last-child {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  font-size: 0.72rem;
 }
 
 .diff-tag-easy { color: var(--accent-emerald); }
@@ -597,6 +624,7 @@ body {
   border: 1px solid rgba(245, 158, 11, 0.25);
   padding: 8px 16px;
   border-radius: var(--radius-full);
+  flex-shrink: 0;
 }
 
 .streak-flame {
@@ -605,35 +633,47 @@ body {
 
 .streak-count-text {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 800;
   color: var(--accent-amber);
+  white-space: nowrap;
 }
 
 .streak-desc {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
-/* Control & Filter Toolbar */
+/* ==========================================================================
+   Control & Filter Toolbar (Systematic Two-Tier Architecture)
+   ========================================================================== */
 .control-toolbar {
   background: var(--bg-surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 14px 20px;
+  padding: 16px 20px;
   margin-bottom: 24px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.toolbar-primary-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .search-box-wrap {
   position: relative;
   flex: 1;
   min-width: 260px;
-  max-width: 420px;
+  max-width: 440px;
 }
 
 .search-input {
@@ -682,11 +722,108 @@ body {
   color: var(--text-high);
 }
 
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.quick-jump-select {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-medium);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+  max-width: 220px;
+}
+
+.quick-jump-select:focus {
+  border-color: var(--accent-cyan);
+}
+
+.btn-secondary {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-medium);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface-3);
+  color: var(--text-high);
+  border-color: var(--border-medium);
+}
+
+.btn-primary {
+  background: var(--accent-indigo);
+  background-image: var(--grad-primary);
+  border: none;
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-glow-indigo);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* Toolbar Filter Clusters Row */
+.toolbar-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cluster-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
 .filters-group {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .filter-chip-btn {
@@ -694,14 +831,15 @@ body {
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
   font-family: var(--font-main);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
   transition: all 0.18s ease;
 }
 
@@ -735,84 +873,15 @@ body {
   color: var(--text-high);
 }
 
-.toolbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-secondary {
-  background: var(--bg-surface-2);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-medium);
-  font-family: var(--font-main);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background: var(--bg-surface-3);
-  color: var(--text-high);
-  border-color: var(--border-medium);
-}
-
-.btn-primary {
-  background: var(--accent-indigo);
-  background-image: var(--grad-primary);
-  border: none;
-  color: #fff;
-  font-family: var(--font-main);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: var(--shadow-glow-indigo);
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  opacity: 0.95;
-  transform: translateY(-1px);
-}
-
-/* Quick Jump Dropdown */
-.quick-jump-select {
-  background: var(--bg-surface-2);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-medium);
-  font-family: var(--font-main);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  outline: none;
-  cursor: pointer;
-  max-width: 200px;
-}
-
-.quick-jump-select:focus {
-  border-color: var(--accent-cyan);
-}
-
-/* Step Accordions Container */
+/* ==========================================================================
+   Step Accordion Cards & Modules
+   ========================================================================== */
 .steps-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
-/* Single Step Accordion Card */
 .step-accordion {
   background: var(--bg-surface-1);
   border: 1px solid var(--border-subtle);
@@ -851,11 +920,12 @@ body {
   align-items: center;
   gap: 16px;
   flex: 1;
+  min-width: 0;
 }
 
 .step-num-badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: var(--accent-cyan);
   background: rgba(56, 189, 248, 0.12);
@@ -863,18 +933,21 @@ body {
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .step-title-group {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
 }
 
 .step-title-text {
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-high);
+  word-break: break-word;
 }
 
 .step-desc-text {
@@ -885,7 +958,8 @@ body {
 .step-header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
+  flex-shrink: 0;
 }
 
 .step-progress-indicator {
@@ -893,13 +967,15 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 6px;
-  min-width: 140px;
+  width: 150px;
+  flex-shrink: 0;
 }
 
 .step-progress-text {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .step-progress-text strong {
@@ -923,8 +999,9 @@ body {
 
 .step-chevron {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .step-accordion.is-expanded .step-chevron {
@@ -952,41 +1029,44 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 9px 14px;
   margin-bottom: 10px;
   border-radius: var(--radius-sm);
   background: var(--bg-surface-2);
   border-left: 3px solid var(--accent-indigo);
+  gap: 12px;
 }
 
 .module-title {
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-medium);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  word-break: break-word;
 }
 
 .module-count {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Problems Table / List */
+/* ==========================================================================
+   Problem Row (Exact 4-Column Systematic Layout - No Overlaps/Cuts)
+   ========================================================================== */
 .problems-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .problem-row {
   display: grid;
-  grid-template-columns: 44px 1fr auto auto auto auto;
+  grid-template-columns: 36px minmax(200px, 1fr) 78px auto;
   align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
+  gap: 16px;
+  padding: 12px 16px;
   background: var(--bg-surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -1022,6 +1102,7 @@ body {
   justify-content: center;
   font-size: 0.9rem;
   color: var(--text-muted);
+  flex-shrink: 0;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1052,18 +1133,17 @@ body {
 .problem-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   min-width: 0;
 }
 
 .problem-title-text {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-high);
   text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .problem-row.is-solved .problem-title-text {
@@ -1073,7 +1153,8 @@ body {
 .problem-meta-tags {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .topic-tag {
@@ -1083,6 +1164,7 @@ body {
   padding: 1px 6px;
   border-radius: 4px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 /* Complexity Pill in Row */
@@ -1094,6 +1176,7 @@ body {
   padding: 1px 6px;
   border-radius: 4px;
   border: 1px solid rgba(56, 189, 248, 0.2);
+  white-space: nowrap;
 }
 
 /* Difficulty Badges */
@@ -1101,10 +1184,13 @@ body {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 3px 10px;
+  padding: 3px 0;
+  width: 78px;
+  text-align: center;
   border-radius: var(--radius-full);
   letter-spacing: 0.02em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .diff-badge.Easy {
@@ -1125,11 +1211,12 @@ body {
   border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
-/* Action Icons */
+/* Row Action Buttons */
 .row-actions-group {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .action-tool-btn {
@@ -1146,6 +1233,7 @@ body {
   transition: all 0.15s ease;
   font-size: 0.85rem;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .action-tool-btn:hover {
@@ -1164,11 +1252,9 @@ body {
   border-color: rgba(56, 189, 248, 0.25);
 }
 
-.action-tool-btn.is-flagged-revision {
-  color: var(--accent-violet);
-}
-
-/* Phase 2 Specific Track Layout */
+/* ==========================================================================
+   Phase 2 Tracks Layout
+   ========================================================================== */
 .track-card {
   background: var(--bg-surface-1);
   border: 1px solid var(--border-subtle);
@@ -1185,18 +1271,22 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .track-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
 .track-title {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-high);
+  word-break: break-word;
 }
 
 .track-desc {
@@ -1204,7 +1294,9 @@ body {
   color: var(--text-muted);
 }
 
-/* Revision Deck Tab */
+/* ==========================================================================
+   Revision Deck (Spaced Repetition Flashcards)
+   ========================================================================== */
 .revision-deck-container {
   display: flex;
   flex-direction: column;
@@ -1219,11 +1311,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .deck-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 18px;
 }
 
@@ -1247,7 +1341,7 @@ body {
 
 .flashcard-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
@@ -1256,6 +1350,8 @@ body {
   font-size: 0.98rem;
   font-weight: 700;
   color: var(--text-high);
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .flashcard-notes-preview {
@@ -1269,6 +1365,7 @@ body {
   max-height: 120px;
   overflow-y: auto;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .flashcard-footer {
@@ -1279,7 +1376,9 @@ body {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Analytics Tab & Activity Heatmap */
+/* ==========================================================================
+   Analytics Tab & Activity Heatmap
+   ========================================================================== */
 .analytics-view-container {
   display: flex;
   flex-direction: column;
@@ -1298,6 +1397,8 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .analytics-card-title {
@@ -1321,6 +1422,7 @@ body {
   grid-auto-flow: column;
   grid-auto-columns: 13px;
   gap: 4px;
+  min-width: 750px;
 }
 
 .heatmap-cell {
@@ -1346,7 +1448,7 @@ body {
 /* Step-by-Step Breakdown Bars in Analytics */
 .category-bars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
 }
 
@@ -1366,13 +1468,16 @@ body {
   align-items: center;
   font-size: 0.8rem;
   font-weight: 600;
+  gap: 8px;
 }
 
-/* Modals & Overlay */
+/* ==========================================================================
+   Modals & Overlay
+   ========================================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 4, 6, 0.82);
+  background: rgba(4, 4, 6, 0.84);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 999;
@@ -1399,7 +1504,7 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: var(--shadow-lg);
-  transform: scale(0.95) translateY(10px);
+  transform: scale(0.96) translateY(10px);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
@@ -1410,28 +1515,31 @@ body {
 }
 
 .modal-header {
-  padding: 20px 24px;
+  padding: 18px 24px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--bg-surface-2);
+  gap: 12px;
 }
 
 .modal-title {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-high);
+  word-break: break-word;
 }
 
 .modal-close-btn {
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   cursor: pointer;
   padding: 4px;
   transition: color 0.15s ease;
+  flex-shrink: 0;
 }
 
 .modal-close-btn:hover {
@@ -1463,7 +1571,7 @@ body {
 }
 
 .form-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-medium);
   text-transform: uppercase;
@@ -1568,27 +1676,125 @@ body {
 .empty-state-text {
   font-size: 0.95rem;
   max-width: 400px;
+  line-height: 1.5;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .app-header {
-    height: auto;
-    padding: 12px 0;
+/* ==========================================================================
+   Responsive Breakpoints (Zero Cuts, Zero Overlaps, Zero Merges)
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
+  .header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .difficulty-breakdown-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .streak-pill-box {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 860px) {
   .header-inner {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+  .brand-section {
+    justify-content: space-between;
+    width: 100%;
   }
   .phase-nav {
-    overflow-x: auto;
-    justify-content: flex-start;
+    width: 100%;
+  }
+  .header-actions {
+    justify-content: flex-end;
+  }
+  .toolbar-primary-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-box-wrap {
+    max-width: 100%;
+  }
+  .toolbar-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .toolbar-filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .stats-badges-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .difficulty-breakdown-row {
+    grid-template-columns: 1fr;
+  }
+  .step-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .step-header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .step-progress-indicator {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  .hero-overview-card {
+    padding: 20px 18px;
+  }
+  .progress-ring-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-identity {
+    align-items: center;
   }
   .problem-row {
-    grid-template-columns: 36px 1fr auto;
-    gap: 10px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    grid-template-areas: 
+      "status title"
+      ". meta";
+    gap: 8px 12px;
+    padding: 10px 12px;
   }
-  .diff-badge, .complexity-pill-tag {
-    display: none;
+  .status-cycle-btn {
+    grid-area: status;
+    align-self: start;
+    margin-top: 2px;
+  }
+  .problem-info {
+    grid-area: title;
+  }
+  .diff-badge {
+    grid-area: meta;
+    justify-self: start;
+  }
+  .row-actions-group {
+    grid-area: meta;
+    justify-self: end;
+  }
+  .form-row-2 {
+    grid-template-columns: 1fr;
   }
 }

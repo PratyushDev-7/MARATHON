@@ -200,44 +200,56 @@
 
     <!-- Control & Filter Toolbar -->
     <section class="control-toolbar">
-      <!-- Search Input -->
-      <div class="search-box-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search problems, patterns, topics... (Ctrl+K)">
-        <button id="searchClearBtn" class="search-clear-btn" title="Clear Search">✕</button>
+      <!-- Top Row: Search & Actions -->
+      <div class="toolbar-primary-row">
+        <!-- Search Input -->
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search problems, patterns, topics... (Ctrl+K)">
+          <button id="searchClearBtn" class="search-clear-btn" title="Clear Search">✕</button>
+        </div>
+
+        <!-- Quick Jump & Global Actions -->
+        <div class="toolbar-actions">
+          <select id="quickJumpSelect" class="quick-jump-select">
+            <option value="">Jump to Section...</option>
+          </select>
+          <button class="btn-secondary" id="toggleAllStepsBtn">
+            <span id="toggleAllIcon">📂</span>
+            <span id="toggleAllLabel">Expand All</span>
+          </button>
+          <button class="btn-primary" id="addCustomProblemBtn">
+            <span>＋</span>
+            <span>Add Custom</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Status Filters -->
-      <div class="filters-group">
-        <button class="filter-chip-btn active" data-filter="all">All</button>
-        <button class="filter-chip-btn filter-todo" data-filter="todo">⚪ Left (To Do)</button>
-        <button class="filter-chip-btn" data-filter="inprogress">🟡 In Progress</button>
-        <button class="filter-chip-btn filter-solved" data-filter="solved">🟢 Solved</button>
-        <button class="filter-chip-btn filter-revision" data-filter="revision">🟣 Revision</button>
-        <button class="filter-chip-btn" data-filter="starred">⭐ Starred</button>
-      </div>
+      <!-- Bottom Row: Filter Clusters -->
+      <div class="toolbar-filter-row">
+        <!-- Status Filter Cluster -->
+        <div class="filter-cluster">
+          <span class="cluster-label">Status</span>
+          <div class="filters-group">
+            <button class="filter-chip-btn active" data-filter="all">All</button>
+            <button class="filter-chip-btn filter-todo" data-filter="todo">⚪ Left</button>
+            <button class="filter-chip-btn" data-filter="inprogress">🟡 In Progress</button>
+            <button class="filter-chip-btn filter-solved" data-filter="solved">🟢 Solved</button>
+            <button class="filter-chip-btn filter-revision" data-filter="revision">🟣 Revision</button>
+            <button class="filter-chip-btn" data-filter="starred">⭐ Starred</button>
+          </div>
+        </div>
 
-      <!-- Difficulty Filters -->
-      <div class="filters-group">
-        <button class="filter-chip-btn active" data-diff="all">All Levels</button>
-        <button class="filter-chip-btn" data-diff="Easy">Easy</button>
-        <button class="filter-chip-btn" data-diff="Medium">Medium</button>
-        <button class="filter-chip-btn" data-diff="Hard">Hard</button>
-      </div>
-
-      <!-- Quick Jump & Global Actions -->
-      <div class="toolbar-actions">
-        <select id="quickJumpSelect" class="quick-jump-select">
-          <option value="">Jump to Section...</option>
-        </select>
-        <button class="btn-secondary" id="toggleAllStepsBtn">
-          <span id="toggleAllIcon">📂</span>
-          <span id="toggleAllLabel">Expand All</span>
-        </button>
-        <button class="btn-primary" id="addCustomProblemBtn">
-          <span>＋</span>
-          <span>Add Custom</span>
-        </button>
+        <!-- Difficulty Filter Cluster -->
+        <div class="filter-cluster">
+          <span class="cluster-label">Difficulty</span>
+          <div class="filters-group">
+            <button class="filter-chip-btn active" data-diff="all">All Levels</button>
+            <button class="filter-chip-btn" data-diff="Easy">Easy</button>
+            <button class="filter-chip-btn" data-diff="Medium">Medium</button>
+            <button class="filter-chip-btn" data-diff="Hard">Hard</button>
+          </div>
+        </div>
       </div>
     </section>
 
